@@ -144,7 +144,7 @@ class Login extends Component {
                     required
                   />
                 </InputGroup>
-                <FormFeedback invalid>
+                <FormFeedback>
                   Please enter a valid email (example@example.com)
                 </FormFeedback>
               </FormGroup>
@@ -171,7 +171,7 @@ class Login extends Component {
                     required
                   />
                 </InputGroup>
-                <FormFeedback invalid>Please enter a password</FormFeedback>
+                <FormFeedback>Please enter a password</FormFeedback>
               </FormGroup>
               <FormGroup className="form-actions">
                 <Button type="submit" size="sm" block color="danger">

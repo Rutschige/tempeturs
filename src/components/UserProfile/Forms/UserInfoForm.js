@@ -5,7 +5,8 @@ import {
   FormGroup,
   Input,
   InputGroup,
-  InputGroupAddon
+  InputGroupAddon,
+  UncontrolledAlert
 } from "reactstrap";
 
 class UserInfoForm extends React.Component {
@@ -19,11 +20,76 @@ class UserInfoForm extends React.Component {
       address2: "Apt 58",
       city: "Houston",
       state: "TX",
-      zip: "77007"
+      zip: "77007",
+      inputDisabled: true,
+      alertVisible: false,
+      infoChanged: false
     };
+    this.editInfo = this.editInfo.bind(this);
+    this.submitChanges = this.submitChanges.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  editInfo(e) {
+    this.setState({
+      inputDisabled: false,
+      alertVisible: false,
+      infoChanged: false
+    });
+  }
+
+  submitChanges(e) {
+    this.setState({ inputDisabled: true, alertVisible: true });
+    console.log(
+      "[User Info]: \n [Name]: " +
+        this.state.name +
+        "\n [Email]: " +
+        this.state.email +
+        +"\n [Address 1]: " +
+        this.state.address1 +
+        "\n [Address 2]: " +
+        this.state.address2 +
+        "\n [City]: " +
+        this.state.city +
+        " \n [State]: " +
+        this.state.state +
+        "\n [ZIP]: " +
+        this.state.zip
+    );
+    //post changes to database here
+  }
+
+  handleChange = async event => {
+    //handles changes in input groups form user
+    const { target } = event;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const { name } = target;
+    await this.setState({
+      [name]: value,
+      infoChanged: true
+    });
+  };
+
+  showAlert() {
+    const infoChanged = this.state.infoChanged;
+    if (infoChanged) {
+      return (
+        <UncontrolledAlert color="success">
+          Personal Information Successfully Updated!
+        </UncontrolledAlert>
+      );
+    } else {
+      return (
+        <UncontrolledAlert color="info">
+          Personal Information Unchanged
+        </UncontrolledAlert>
+      );
+    }
   }
 
   render() {
+    const inputDisabled = this.state.inputDisabled;
+    const alertVisible = this.state.alertVisible;
     return (
       <div className="userInfoForm">
         <Form>
@@ -35,8 +101,11 @@ class UserInfoForm extends React.Component {
                 name="name"
                 id="name"
                 defaultValue={this.state.name}
-                disabled
+                disabled={inputDisabled}
                 required
+                onChange={e => {
+                  this.handleChange(e);
+                }}
               />
             </InputGroup>
           </FormGroup>
@@ -48,8 +117,11 @@ class UserInfoForm extends React.Component {
                 name="email"
                 id="email"
                 defaultValue={this.state.email}
-                disabled
+                disabled={inputDisabled}
                 required
+                onChange={e => {
+                  this.handleChange(e);
+                }}
               />
             </InputGroup>
           </FormGroup>
@@ -63,8 +135,11 @@ class UserInfoForm extends React.Component {
                 name="address1"
                 id="address1"
                 defaultValue={this.state.address1}
-                disabled
+                disabled={inputDisabled}
                 required
+                onChange={e => {
+                  this.handleChange(e);
+                }}
               />
             </InputGroup>
           </FormGroup>
@@ -78,8 +153,11 @@ class UserInfoForm extends React.Component {
                 name="address2"
                 id="address2"
                 defaultValue={this.state.address2}
-                disabled
+                disabled={inputDisabled}
                 required
+                onChange={e => {
+                  this.handleChange(e);
+                }}
               />
             </InputGroup>
           </FormGroup>
@@ -91,8 +169,11 @@ class UserInfoForm extends React.Component {
                 name="city"
                 id="city"
                 defaultValue={this.state.city}
-                disabled
+                disabled={inputDisabled}
                 required
+                onChange={e => {
+                  this.handleChange(e);
+                }}
               />
             </InputGroup>
           </FormGroup>
@@ -104,8 +185,11 @@ class UserInfoForm extends React.Component {
                 name="state"
                 id="state"
                 defaultValue={this.state.state}
-                disabled
+                disabled={inputDisabled}
                 required
+                onChange={e => {
+                  this.handleChange(e);
+                }}
               />
             </InputGroup>
           </FormGroup>
@@ -117,14 +201,34 @@ class UserInfoForm extends React.Component {
                 name="zip"
                 id="zip"
                 defaultValue={this.state.zip}
-                disabled
+                disabled={inputDisabled}
                 required
+                onChange={e => {
+                  this.handleChange(e);
+                }}
               />
             </InputGroup>
           </FormGroup>
-          <Button color="secondary" style={{ padding: ".5%" }} block>
-            Edit Personal Information
-          </Button>
+          {inputDisabled ? (
+            <Button
+              color="secondary"
+              style={{ padding: ".5%" }}
+              block
+              onClick={e => this.editInfo(e)}
+            >
+              Edit Personal Information
+            </Button>
+          ) : (
+            <Button
+              color="primary"
+              style={{ padding: ".5%" }}
+              block
+              onClick={e => this.submitChanges(e)}
+            >
+              Submit Changes
+            </Button>
+          )}
+          {alertVisible ? this.showAlert() : <></>}
         </Form>
       </div>
     );

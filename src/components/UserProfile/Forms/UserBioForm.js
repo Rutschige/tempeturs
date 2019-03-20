@@ -13,11 +13,15 @@ class UserBioForm extends React.Component {
     };
     this.editBio = this.editBio.bind(this);
     this.submitChanges = this.submitChanges.bind(this);
-    this.editBio = this.editBio.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   editBio(e) {
-    this.setState({ inputDisabled: false, alertVisible: false, bioChanged: false });
+    this.setState({
+      inputDisabled: false,
+      alertVisible: false,
+      bioChanged: false
+    });
   }
 
   submitChanges(e) {
@@ -32,20 +36,15 @@ class UserBioForm extends React.Component {
 
   showAlert() {
     const bioChanged = this.state.bioChanged;
-    if(bioChanged){
+    if (bioChanged) {
       return (
         <UncontrolledAlert color="success">
           Bio Successfully Updated!
         </UncontrolledAlert>
       );
-    } else{
-      return (
-        <UncontrolledAlert color="info">
-          Bio Unchanged
-        </UncontrolledAlert>
-      );
+    } else {
+      return <UncontrolledAlert color="info">Bio Unchanged</UncontrolledAlert>;
     }
-    
   }
 
   render() {

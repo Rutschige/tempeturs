@@ -14,7 +14,7 @@ import {
   InputGroupAddon,
   InputGroupText
 } from "reactstrap";
-import axios from 'axios';
+import axios from "axios";
 
 class Register extends Component {
   constructor(props) {
@@ -133,11 +133,10 @@ class Register extends Component {
     ) {
       //then proceed to register user (send JOT of info to backend here)
       event.preventDefault();
-      
+
       //put axios portion here
-      const {fullname, email, password} = this.state;
-      axios.post('/register', {fullname, email, password})
-      .then((result) =>{
+      const { fullname, email, password } = this.state;
+      axios.post("/register", { fullname, email, password }).then(result => {
         //access and sort return codes here
       });
 
@@ -179,7 +178,7 @@ class Register extends Component {
                     }}
                     required
                   />
-                  <FormFeedback invalid>
+                  <FormFeedback>
                     Please enter a valid name (Letters and Spaces Only)
                   </FormFeedback>
                 </InputGroup>
@@ -206,7 +205,7 @@ class Register extends Component {
                     }}
                     required
                   />
-                  <FormFeedback invalid>
+                  <FormFeedback>
                     Please enter a valid email (example@example.com)
                   </FormFeedback>
                 </InputGroup>
@@ -232,7 +231,7 @@ class Register extends Component {
                     }}
                     required
                   />
-                  <FormFeedback invalid>
+                  <FormFeedback>
                     Please enter a valid password{" "}
                     <p>
                       (NOTE: a Password must contain at least 1 digit, 1 lower
@@ -267,7 +266,7 @@ class Register extends Component {
                     }}
                     required
                   />
-                  <FormFeedback invalid>Password does not match</FormFeedback>
+                  <FormFeedback>Password does not match</FormFeedback>
                 </InputGroup>
               </FormGroup>
               <FormGroup className="form-actions">

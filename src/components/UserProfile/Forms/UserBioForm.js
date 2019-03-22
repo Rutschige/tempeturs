@@ -51,7 +51,7 @@ class UserBioForm extends React.Component {
     const inputDisabled = this.state.inputDisabled;
     const alertVisible = this.state.alertVisible;
     return (
-      <div className="userBioForm">
+      <>
         <Form>
           <FormGroup>
             <Input
@@ -88,7 +88,7 @@ class UserBioForm extends React.Component {
           )}
           {alertVisible ? this.showAlert() : <></>}
         </Form>
-      </div>
+      </>
     );
   }
 }

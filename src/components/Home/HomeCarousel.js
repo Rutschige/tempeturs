@@ -20,7 +20,7 @@ class HomeCarousel extends Component {
       <Row>
         <Col>
           <Card style={this.carouselStyle}>
-            <h2>WhoWeAre</h2>
+            <h2>Who We Are</h2>
             <WhoWeAre />
           </Card>
         </Col>

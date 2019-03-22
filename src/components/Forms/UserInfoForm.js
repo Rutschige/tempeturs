@@ -40,22 +40,15 @@ class UserInfoForm extends React.Component {
 
   submitChanges(e) {
     this.setState({ inputDisabled: true, alertVisible: true });
-    console.log(
-      "[User Info]: \n [Name]: " +
-        this.state.name +
-        "\n [Email]: " +
-        this.state.email +
-        +"\n [Address 1]: " +
-        this.state.address1 +
-        "\n [Address 2]: " +
-        this.state.address2 +
-        "\n [City]: " +
-        this.state.city +
-        " \n [State]: " +
-        this.state.state +
-        "\n [ZIP]: " +
-        this.state.zip
-    );
+    // console.log(
+    //   `[User Info]: \n [Name]: ${this.state.name}\n [Email]: ${
+    //     this.state.email
+    //   }\n [Address 1]: ${this.state.address1}\n [Address 2]: ${
+    //     this.state.address2
+    //   }\n [City]: ${this.state.city}\n [State]: ${this.state.state}\n [ZIP]: ${
+    //     this.state.zip
+    //   }`
+    // );
     //post changes to database here
   }
 

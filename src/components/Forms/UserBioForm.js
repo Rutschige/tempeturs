@@ -25,7 +25,7 @@ class UserBioForm extends React.Component {
 
   submitChanges(e) {
     this.setState({ inputDisabled: true, alertVisible: true });
-    console.log("[User Bio]: " + this.state.bio);
+    // console.log(`[User Bio]: ${this.state.bio}`);
     //post changes to database here
   }
 

@@ -35,9 +35,9 @@ class PetInfoForm extends React.Component {
   
     submitChanges(e) {
       this.setState({ inputDisabled: true, alertVisible: true });
-      console.log(
-        `[Pet Info]: \n [Name]: ${this.state.name} \n [Type]: ${this.state.type}\n [Description]: ${this.state.description}`
-      );
+      // console.log(
+      //   `[Pet Info]: \n [Name]: ${this.state.name} \n [Type]: ${this.state.type}\n [Description]: ${this.state.description}`
+      // );
       //post changes to database here
     }
   

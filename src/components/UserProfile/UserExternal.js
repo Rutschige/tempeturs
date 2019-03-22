@@ -12,26 +12,24 @@ class UserExternal extends React.Component {
         "Hi! My name is John Doe and I am a pet enthusiast with over 5 years of experience providing pet services"
     };
   }
-  cardStyle = { margin: "0% auto", minWidth: "300px" };
-  cardHeader = { padding: ".5%", backgroundColor: "#422ef7", color: "white" };
-  cardFooter = { padding: "1%", backgroundColor: "#e6e6e6" };
+  
   render() {
     return (
-      <div className="userext">
-        <Card style={this.cardStyle}>
-          <CardHeader style={this.cardHeader}>
+      <>
+        <Card className="cardStyle">
+          <CardHeader className="cardHeader">
             User Info (External View)
           </CardHeader>
           <CardBody>
             <img src={ProfilePic} alt="profilepic" />
             <h2>{this.state.name}</h2>
             <h6>Rating: {this.state.rating}</h6>
-            <Card style={this.cardStyle}>
-              <CardHeader style={this.cardHeader}>Bio</CardHeader>
+            <Card className="cardStyle">
+              <CardHeader className="cardHeader">Bio</CardHeader>
               <CardBody>{this.state.bio}</CardBody>
             </Card>
           </CardBody>
-          <CardFooter style={this.cardFooter}>
+          <CardFooter className="cardFooter">
             <Button color="primary" style={{ padding: ".5%" }} block>
               Leave a Review
             </Button>
@@ -40,7 +38,7 @@ class UserExternal extends React.Component {
             </Button>
           </CardFooter>
         </Card>
-      </div>
+      </>
     );
   }
 }

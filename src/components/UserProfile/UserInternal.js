@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Card, CardHeader, CardBody } from "reactstrap";
 import ProfilePic from "../../assets/logo.svg";
-import UserInfoForm from "./Forms/UserInfoForm";
-import UserBioForm from "./Forms/UserBioForm";
+import UserInfoForm from "../Forms/UserInfoForm";
+import UserBioForm from "../Forms/UserBioForm";
 
 class UserInternal extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class UserInternal extends React.Component {
             <Card className="innerCard">
               <CardHeader className="cardHeader">Bio</CardHeader>
               <CardBody>
-                <UserBioForm />
+                <UserBioForm bio="Hi! My name is John Doe and I am a pet enthusiast with over 5 years of experience providing pet services"/>
               </CardBody>
             </Card>
             <Card className="innerCard">
@@ -42,7 +42,7 @@ class UserInternal extends React.Component {
                 Personal Information
               </CardHeader>
               <CardBody>
-                <UserInfoForm />
+                <UserInfoForm name="John Doe" email="johndoe@gmail.com" rating="4.5 out of 5"/>
               </CardBody>
             </Card>
           </CardBody>

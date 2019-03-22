@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Card, CardHeader, CardBody } from "reactstrap";
-import PetInfoForm from "./Forms/PetInfoForm";
+import PetInfoForm from "../Forms/PetInfoForm";
 
 class PetsConatiner extends Component {
   render() {

@@ -20,7 +20,7 @@ export default class NavBar extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      isLoggedIn: false
+      isLoggedIn: this.props.isLoggedIn
     };
   }
 
@@ -33,22 +33,18 @@ export default class NavBar extends React.Component {
   isLoggedIn(props) {
     const isLoggedIn = props.isLoggedIn;
 
-    let navOne;
-    let navTwo;
-    let navThree;
-
     if (isLoggedIn) {
-      navOne = (
+      const navOne = (
         <NavItem>
           <NavLink href="/userprofile">Profile</NavLink>
         </NavItem>
       );
-      navTwo = (
+      const navTwo = (
         <NavItem>
           <NavLink href="/dashboard">Dashboard</NavLink>
         </NavItem>
       );
-      navThree = (
+      const navThree = (
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
             Services
@@ -61,27 +57,31 @@ export default class NavBar extends React.Component {
           </DropdownMenu>
         </UncontrolledDropdown>
       );
+      return (
+        <>
+          {navOne}
+          {navTwo}
+          {navThree}
+        </>
+      );
     } else {
-      navOne = (
+      const navOne = (
         <NavItem>
           <NavLink href="/login">Login</NavLink>
         </NavItem>
       );
-      navTwo = (
+      const navTwo = (
         <NavItem>
           <NavLink href="/register">Register</NavLink>
         </NavItem>
       );
-      navThree = <></>;
+      return (
+        <>
+          {navOne}
+          {navTwo}
+        </>
+      );
     }
-
-    return (
-      <>
-        {navOne}
-        {navTwo}
-        {navThree}
-      </>
-    );
   }
   coloring = { backgroundColor: "#422ef7", color: "	#ffffff" };
   render() {

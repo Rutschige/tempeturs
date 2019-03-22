@@ -2,37 +2,59 @@ import React, { Component } from "react";
 import { Col, Row } from "reactstrap";
 import UserExternal from "./UserExternal";
 import UserInternal from "./UserInternal";
-import RecentReviews from "./RecentReviews";
+import ReviewsContainer from "./ReviewsContainer";
+import PetsConatiner from "./PetsContainer";
 
 function ProfileView(props) {
   const isUser = props.isUser;
   if (isUser) {
-    return <UserInternal />;
+    return (
+      <>
+        <Col>
+          <UserInternal />
+        </Col>
+        <Col>
+          <ReviewsContainer />
+        </Col>
+        <Col>
+          <PetsConatiner />
+        </Col>
+      </>
+    );
   } else {
-    return <UserExternal />;
+    return (
+      <>
+        <Col>
+          <UserExternal />
+        </Col>
+        <Col>
+          <ReviewsContainer />
+        </Col>
+      </>
+    );
   }
 }
 
 class UserContainer extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       isUser: true
     };
   }
   render() {
-    const isUser= this.state.isUser;
+    const isUser = this.state.isUser;
     return (
-      <Row>
-        <Col>
-          {/* false for external view, and true for internal */}
+      <>
+        <Row>
+          {/* this will show profile from internal perspective */}
           <ProfileView isUser={isUser} />
-        </Col>
-        <Col>
-          <RecentReviews />
-        </Col>
-        <Col>Pet Cards</Col>
-      </Row>
+        </Row>
+        <Row>
+          {/* this will show profile from external perspective */}
+          <ProfileView isUser={false} />
+        </Row>
+      </>
     );
   }
 }

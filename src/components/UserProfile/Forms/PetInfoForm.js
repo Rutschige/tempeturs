@@ -73,7 +73,7 @@ class PetInfoForm extends React.Component {
       const inputDisabled = this.state.inputDisabled;
       const alertVisible = this.state.alertVisible;
       return (
-        <div className="userInfoForm">
+        <>
           <Form>
             <FormGroup>
               <InputGroup>
@@ -157,7 +157,7 @@ class PetInfoForm extends React.Component {
             )}
             {alertVisible ? this.showAlert() : <></>}
           </Form>
-        </div>
+        </>
       );
     }
   }

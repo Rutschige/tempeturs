@@ -12,21 +12,15 @@ class UserInternal extends React.Component {
       rating: "4.5 out of 5"
     };
   }
-  // cardStyle = { margin: "0% auto", minWidth: "300px" };
-  // innerCard = { margin: "5% auto", minWidth: "300px" };
-  // cardHeader = { padding: ".5%", backgroundColor: "#422ef7", color: "white" };
-  // cardFooter = { padding: "1%", backgroundColor: "#e6e6e6" };
+  
   render() {
     return (
       <>
-        {/* <Card style={this.cardStyle} */}
         <Card className="cardStyle">
-          {/* <CardHeader style={this.cardHeader}> */}
           <CardHeader className="cardHeader">
             User Info (Internal View)
           </CardHeader>
           <CardBody>
-            {/* <Card style={this.innerCard}> */}
             <Card className="innerCard">
               <CardBody>
                 <img src={ProfilePic} alt="profilepic" />
@@ -37,17 +31,13 @@ class UserInternal extends React.Component {
             </Card>
             <h2>{this.state.name}</h2>
             <h6>Rating: {this.state.rating}</h6>
-            {/* <Card style={this.innerCard}> */}
             <Card className="innerCard">
-              {/* <CardHeader style={this.cardHeader}> */}
               <CardHeader className="cardHeader">Bio</CardHeader>
               <CardBody>
                 <UserBioForm />
               </CardBody>
             </Card>
-            {/* <Card style={this.innerCard}> */}
             <Card className="innerCard">
-              {/* <CardHeader style={this.cardHeader}> */}
               <CardHeader className="cardHeader">
                 Personal Information
               </CardHeader>

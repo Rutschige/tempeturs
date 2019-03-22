@@ -33,8 +33,7 @@ class UserBioForm extends React.Component {
     this.setState({ bio: e.target.value, bioChanged: true });
   }
 
-  showAlert() {
-    const bioChanged = this.state.bioChanged;
+  showAlert(bioChanged) {
     if (bioChanged) {
       return (
         <UncontrolledAlert color="success">
@@ -47,8 +46,6 @@ class UserBioForm extends React.Component {
   }
 
   render() {
-    const inputDisabled = this.state.inputDisabled;
-    const alertVisible = this.state.alertVisible;
     return (
       <>
         <Form>
@@ -59,14 +56,14 @@ class UserBioForm extends React.Component {
               id="bio"
               defaultValue={this.state.bio}
               rows="5"
-              disabled={inputDisabled}
+              disabled={this.state.inputDisabled}
               required
               onChange={e => {
                 this.handleChange(e);
               }}
             />
           </FormGroup>
-          {inputDisabled ? (
+          {this.state.inputDisabled ? (
             <Button
               color="secondary"
               style={{ padding: ".5%" }}
@@ -85,7 +82,7 @@ class UserBioForm extends React.Component {
               Submit Changes
             </Button>
           )}
-          {alertVisible ? this.showAlert() : <></>}
+          {this.state.alertVisible ? this.showAlert(this.state.bioChanged) : <></>}
         </Form>
       </>
     );

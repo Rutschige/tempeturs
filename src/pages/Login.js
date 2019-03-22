@@ -21,7 +21,6 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      fullname: "John Doe",
       email: "",
       password: "",
       validate: {
@@ -75,23 +74,23 @@ class Login extends Component {
       this.state.validate.passwordState === "has-success"
     ) {
       //then proceed to login user (send JOT of info to backend here)
-      event.preventDefault();
+      //event.preventDefault();
 
       const { email, password } = this.state;
       axios.post("/login", { email, password }).then(result => {
         //access and sort return codes here
+        console.log(`[Result]: ${result}`);
       });
 
       this.setState({ alertVisible: true });
     }
   }
 
-  showAlert() {
-    const loginValidated = this.state.loginValidated;
+  showAlert(loginValidated) {
     if (loginValidated) {
       return (
         <UncontrolledAlert color="success">
-          Login Successful. Welcome Back {this.state.fullname}!
+          Login Successful. Welcome Back!
           <Button color="link" href="/userprofile">
             Proceed to Profile Page
           </Button>
@@ -106,15 +105,12 @@ class Login extends Component {
     }
   }
 
-  cardStyle = { margin: "5% auto", maxWidth: "600px", minWidth: "200px" };
-  coloring = { backgroundColor: "#422ef7", color: "	#ffffff" };
-
   render() {
     const alertVisible = this.state.alertVisible;
     return (
-      <div className="login">
-        <Card style={this.cardStyle} outline color="dark">
-          <CardHeader style={this.coloring}>
+      <>
+        <Card className="loginStyling" outline color="dark">
+          <CardHeader className="coloring">
             <i style={{ margin: "1%" }} className="fa fa-paw" />
             Tempeturs Login
           </CardHeader>
@@ -124,7 +120,7 @@ class Login extends Component {
               <FormGroup>
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
-                    <InputGroupText style={this.coloring}>
+                    <InputGroupText className="coloring">
                       <i className="fa fa-envelope" />
                     </InputGroupText>
                   </InputGroupAddon>
@@ -151,7 +147,7 @@ class Login extends Component {
               <FormGroup>
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
-                    <InputGroupText style={this.coloring}>
+                    <InputGroupText className="coloring">
                       <i className="fa fa-lock" />
                     </InputGroupText>
                   </InputGroupAddon>
@@ -179,7 +175,7 @@ class Login extends Component {
                 </Button>
               </FormGroup>
             </Form>
-            {alertVisible ? this.showAlert() : <></>}
+            {alertVisible ? this.showAlert(this.state.loginValidated) : <></>}
           </CardBody>
           <CardFooter style={{ padding: "0", backgroundColor: "#e6e6e6" }}>
             Not a Member Yet?
@@ -188,7 +184,7 @@ class Login extends Component {
             </Button>
           </CardFooter>
         </Card>
-      </div>
+      </>
     );
   }
 }

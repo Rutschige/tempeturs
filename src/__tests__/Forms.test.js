@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { shallow } from "enzyme";
+import { UncontrolledAlert } from "reactstrap";
 import renderer from "react-test-renderer";
 import PetInfoForm from "../components/Forms/PetInfoForm";
 import UserBioForm from "../components/Forms/UserBioForm";
@@ -77,6 +78,19 @@ describe("PetInfoForm functions", () => {
     wrapper.instance().submitChanges(event);
     expect(wrapper.state()).toEqual(expected);
   });
+
+  it("testing showAlert function", () => {
+    expect(wrapper.instance().showAlert(true)).toEqual(
+      <UncontrolledAlert color="success">
+        Pet Information Successfully Updated!
+      </UncontrolledAlert>
+    );
+    expect(wrapper.instance().showAlert(false)).toEqual(
+      <UncontrolledAlert color="info">
+        Pet Information Unchanged
+      </UncontrolledAlert>
+    );
+  });
 });
 
 //UserBioForm testing
@@ -126,6 +140,17 @@ describe("UserBioForm functions", () => {
     };
     wrapper.instance().submitChanges(event);
     expect(wrapper.state()).toEqual(expected);
+  });
+
+  it("testing showAlert function", () => {
+    expect(wrapper.instance().showAlert(true)).toEqual(
+      <UncontrolledAlert color="success">
+        Bio Successfully Updated!
+      </UncontrolledAlert>
+    );
+    expect(wrapper.instance().showAlert(false)).toEqual(
+      <UncontrolledAlert color="info">Bio Unchanged</UncontrolledAlert>
+    );
   });
 });
 
@@ -237,7 +262,6 @@ describe("UserInfoForm functions", () => {
     expect(wrapper.state()).toEqual(expected);
   });
 
-
   it("testing submitChanges function", () => {
     const event = {};
     const expected = {
@@ -255,5 +279,18 @@ describe("UserInfoForm functions", () => {
     };
     wrapper.instance().submitChanges(event);
     expect(wrapper.state()).toEqual(expected);
+  });
+
+  it("testing showAlert function", () => {
+    expect(wrapper.instance().showAlert(true)).toEqual(
+      <UncontrolledAlert color="success">
+        Personal Information Successfully Updated!
+      </UncontrolledAlert>
+    );
+    expect(wrapper.instance().showAlert(false)).toEqual(
+      <UncontrolledAlert color="info">
+        Personal Information Unchanged
+      </UncontrolledAlert>
+    );
   });
 });

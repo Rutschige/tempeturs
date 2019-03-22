@@ -52,8 +52,7 @@ class PetInfoForm extends React.Component {
       });
     };
   
-    showAlert() {
-      const infoChanged = this.state.infoChanged;
+    showAlert(infoChanged) {
       if (infoChanged) {
         return (
           <UncontrolledAlert color="success">
@@ -70,8 +69,6 @@ class PetInfoForm extends React.Component {
     }
   
     render() {
-      const inputDisabled = this.state.inputDisabled;
-      const alertVisible = this.state.alertVisible;
       return (
         <>
           <Form>
@@ -83,7 +80,7 @@ class PetInfoForm extends React.Component {
                   name="name"
                   id="name"
                   defaultValue={this.state.name}
-                  disabled={inputDisabled}
+                  disabled={this.state.inputDisabled}
                   required
                   onChange={e => {
                     this.handleChange(e);
@@ -99,7 +96,7 @@ class PetInfoForm extends React.Component {
                   name="type"
                   id="type"
                   defaultValue={this.state.type}
-                  disabled={inputDisabled}
+                  disabled={this.state.inputDisabled}
                   required
                   onChange={e => {
                     this.handleChange(e);
@@ -128,7 +125,7 @@ class PetInfoForm extends React.Component {
                   id="description"
                   rows="5"
                   defaultValue={this.state.description}
-                  disabled={inputDisabled}
+                  disabled={this.state.inputDisabled}
                   required
                   onChange={e => {
                     this.handleChange(e);
@@ -136,7 +133,7 @@ class PetInfoForm extends React.Component {
                 />
               </InputGroup>
             </FormGroup>
-            {inputDisabled ? (
+            {this.state.inputDisabled ? (
               <Button
                 color="secondary"
                 style={{ padding: ".5%" }}
@@ -155,7 +152,7 @@ class PetInfoForm extends React.Component {
                 Submit Changes
               </Button>
             )}
-            {alertVisible ? this.showAlert() : <></>}
+            {this.state.alertVisible ? this.showAlert(this.state.infoChanged) : <></>}
           </Form>
         </>
       );

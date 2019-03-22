@@ -63,8 +63,7 @@ class UserInfoForm extends React.Component {
     });
   };
 
-  showAlert() {
-    const infoChanged = this.state.infoChanged;
+  showAlert(infoChanged) {
     if (infoChanged) {
       return (
         <UncontrolledAlert color="success">
@@ -81,8 +80,6 @@ class UserInfoForm extends React.Component {
   }
 
   render() {
-    const inputDisabled = this.state.inputDisabled;
-    const alertVisible = this.state.alertVisible;
     return (
       <>
         <Form>
@@ -94,7 +91,7 @@ class UserInfoForm extends React.Component {
                 name="name"
                 id="name"
                 defaultValue={this.state.name}
-                disabled={inputDisabled}
+                disabled={this.state.inputDisabled}
                 required
                 onChange={e => {
                   this.handleChange(e);
@@ -110,7 +107,7 @@ class UserInfoForm extends React.Component {
                 name="email"
                 id="email"
                 defaultValue={this.state.email}
-                disabled={inputDisabled}
+                disabled={this.state.inputDisabled}
                 required
                 onChange={e => {
                   this.handleChange(e);
@@ -128,7 +125,7 @@ class UserInfoForm extends React.Component {
                 name="address1"
                 id="address1"
                 defaultValue={this.state.address1}
-                disabled={inputDisabled}
+                disabled={this.state.inputDisabled}
                 required
                 onChange={e => {
                   this.handleChange(e);
@@ -146,7 +143,7 @@ class UserInfoForm extends React.Component {
                 name="address2"
                 id="address2"
                 defaultValue={this.state.address2}
-                disabled={inputDisabled}
+                disabled={this.state.inputDisabled}
                 required
                 onChange={e => {
                   this.handleChange(e);
@@ -162,7 +159,7 @@ class UserInfoForm extends React.Component {
                 name="city"
                 id="city"
                 defaultValue={this.state.city}
-                disabled={inputDisabled}
+                disabled={this.state.inputDisabled}
                 required
                 onChange={e => {
                   this.handleChange(e);
@@ -178,7 +175,7 @@ class UserInfoForm extends React.Component {
                 name="state"
                 id="state"
                 defaultValue={this.state.state}
-                disabled={inputDisabled}
+                disabled={this.state.inputDisabled}
                 required
                 onChange={e => {
                   this.handleChange(e);
@@ -194,7 +191,7 @@ class UserInfoForm extends React.Component {
                 name="zip"
                 id="zip"
                 defaultValue={this.state.zip}
-                disabled={inputDisabled}
+                disabled={this.state.inputDisabled}
                 required
                 onChange={e => {
                   this.handleChange(e);
@@ -202,7 +199,7 @@ class UserInfoForm extends React.Component {
               />
             </InputGroup>
           </FormGroup>
-          {inputDisabled ? (
+          {this.state.inputDisabled ? (
             <Button
               color="secondary"
               style={{ padding: ".5%" }}
@@ -221,7 +218,7 @@ class UserInfoForm extends React.Component {
               Submit Changes
             </Button>
           )}
-          {alertVisible ? this.showAlert() : <></>}
+          {this.state.alertVisible ? this.showAlert(this.state.infoChanged) : <></>}
         </Form>
       </>
     );

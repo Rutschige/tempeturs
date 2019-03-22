@@ -31,3 +31,21 @@
     transform: rotate(360deg);
   }
 }
+
+.cardStyle {
+  margin: 0% auto;
+  min-width: 300px;
+}
+.innerCard {
+  margin: 5% auto;
+  min-width: 300px;
+}
+.cardHeader {
+  padding: .5%;
+  background-color: #422ef7;
+  color: white;
+}
+.cardFooter {
+  padding: 1%;
+  background-color: #e6e6e6;
+}

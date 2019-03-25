@@ -1,7 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { shallow } from "enzyme";
-import { UncontrolledAlert } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  UncontrolledAlert
+} from "reactstrap";
 import renderer from "react-test-renderer";
 import PetInfoForm from "../components/Forms/PetInfoForm";
 import UserBioForm from "../components/Forms/UserBioForm";
@@ -16,7 +24,6 @@ describe("PetInfoForm functions", () => {
   const wrapper = shallow(<PetInfoForm />);
   it("testing editInfo function", () => {
     const event = {};
-
     const expected = {
       name: undefined,
       type: undefined,
@@ -36,21 +43,18 @@ describe("PetInfoForm functions", () => {
         value: "test name"
       }
     };
-
     const typeEvent = {
       target: {
         name: "type",
         value: "Dog"
       }
     };
-
     const descEvent = {
       target: {
         name: "description",
         value: "test test test"
       }
     };
-
     const expected = {
       name: "test name",
       type: "Dog",
@@ -102,7 +106,6 @@ describe("UserBioForm functions", () => {
   const wrapper = shallow(<UserBioForm />);
   it("testing editInfo function", () => {
     const event = {};
-
     const expected = {
       bio: undefined,
       inputDisabled: false,
@@ -161,9 +164,9 @@ it("UserInfoForm shallow renders without crashing", () => {
 
 describe("UserInfoForm functions", () => {
   const wrapper = shallow(<UserInfoForm />);
+
   it("testing editInfo function", () => {
     const event = {};
-
     const expected = {
       name: undefined,
       email: undefined,
@@ -188,56 +191,48 @@ describe("UserInfoForm functions", () => {
         value: "test name"
       }
     };
-
     const emailEvent = {
       target: {
         name: "email",
         value: "test@test.com"
       }
     };
-
     const ratingEvent = {
       target: {
         name: "rating",
         value: "test rating"
       }
     };
-
     const add1Event = {
       target: {
         name: "address1",
         value: "test add1"
       }
     };
-
     const add2Event = {
       target: {
         name: "address2",
         value: "test add2"
       }
     };
-
     const cityEvent = {
       target: {
         name: "city",
         value: "test city"
       }
     };
-
     const stateEvent = {
       target: {
         name: "state",
         value: "test state"
       }
     };
-
     const zipEvent = {
       target: {
         name: "zip",
         value: "test zip"
       }
     };
-
     const expected = {
       name: "test name",
       email: "test@test.com",

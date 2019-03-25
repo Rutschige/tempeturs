@@ -109,7 +109,7 @@ class Login extends Component {
     const alertVisible = this.state.alertVisible;
     return (
       <>
-        <Card className="loginStyling" outline color="dark">
+        <Card className="loginStyle" outline color="dark">
           <CardHeader className="coloring">
             <i style={{ margin: "1%" }} className="fa fa-paw" />
             Tempeturs Login

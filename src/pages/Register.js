@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  Alert,
   Button,
   Card,
   CardBody,
@@ -12,7 +11,8 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
-  InputGroupText
+  InputGroupText,
+  UncontrolledAlert
 } from "reactstrap";
 import axios from "axios";
 
@@ -32,30 +32,10 @@ class Register extends Component {
         confirmpasswordState: ""
       },
       registerValidated: false,
-      alertSuccessVisible: false,
-      alertSuccessMessage: ""
+      alertVisible: false
     };
     this.handleChange = this.handleChange.bind(this);
-    this.onDismiss = this.onDismiss.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  onDismiss() {
-    this.setState({ alertSuccessVisible: false });
-  }
-
-  setAlertMessage() {
-    //sets the message to be displayed to user on successful register
-    let submitString =
-      // `[Full Name]: ${this.state.fullname}\n` +
-      // `[Email]: ${this.state.email}\n` +
-      // `[Password]: ${this.state.password}\n` +
-      // `[Confirm Password]: ${this.state.confirmpassword}\n` +
-      `Registration Successful, Welcome Aboard ${this.state.fullname}!`;
-    this.setState({
-      alertSuccessMessage: submitString,
-      alertSuccessVisible: true
-    });
   }
 
   handleChange = async event => {
@@ -132,25 +112,43 @@ class Register extends Component {
       this.state.validate.confirmpasswordState === "has-success"
     ) {
       //then proceed to register user (send JOT of info to backend here)
-      event.preventDefault();
 
       //put axios portion here
       const { fullname, email, password } = this.state;
       axios.post("/register", { fullname, email, password }).then(result => {
         //access and sort return codes here
+        console.log(`[Result]: ${result}`);
       });
 
-      this.setAlertMessage();
+      this.setState({ registerValidated: true, alertVisible: true });
     }
   }
 
-  cardStyle = { margin: "5% auto", maxWidth: "600px", minWidth: "200px" };
-  coloring = { backgroundColor: "#422ef7", color: "	#ffffff" };
+  showAlert(registerValidated) {
+    if (registerValidated) {
+      return (
+        <UncontrolledAlert color="success">
+          Registration Successful. Welcome Aboard!
+          <Button color="link" href="/userprofile">
+            Proceed to Profile Page
+          </Button>
+        </UncontrolledAlert>
+      );
+    } else {
+      return (
+        <UncontrolledAlert color="danger">
+          Registration Unsuccessful. Please try again.
+        </UncontrolledAlert>
+      );
+    }
+  }
+
   render() {
+    const alertVisible = this.state.alertVisible;
     return (
-      <div className="register">
-        <Card style={this.cardStyle} outline color="dark">
-          <CardHeader style={this.coloring}>
+      <>
+        <Card className="registerStyle" outline color="dark">
+          <CardHeader className="coloring">
             <i style={{ margin: "1%" }} className="fa fa-paw" />
             Tempeturs Registration
           </CardHeader>
@@ -160,7 +158,7 @@ class Register extends Component {
               <FormGroup>
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
-                    <InputGroupText style={this.coloring}>
+                    <InputGroupText className="coloring">
                       <i className="fa fa-user" />
                     </InputGroupText>
                   </InputGroupAddon>
@@ -186,7 +184,7 @@ class Register extends Component {
               <FormGroup>
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
-                    <InputGroupText style={this.coloring}>
+                    <InputGroupText className="coloring">
                       <i className="fa fa-envelope" />
                     </InputGroupText>
                   </InputGroupAddon>
@@ -213,7 +211,7 @@ class Register extends Component {
               <FormGroup>
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
-                    <InputGroupText style={this.coloring}>
+                    <InputGroupText className="coloring">
                       <i className="fa fa-lock" />
                     </InputGroupText>
                   </InputGroupAddon>
@@ -244,7 +242,7 @@ class Register extends Component {
               <FormGroup>
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
-                    <InputGroupText style={this.coloring}>
+                    <InputGroupText className="coloring">
                       <i className="fa fa-lock" />
                     </InputGroupText>
                   </InputGroupAddon>
@@ -275,16 +273,7 @@ class Register extends Component {
                 </Button>
               </FormGroup>
             </Form>
-            <Alert
-              color="success"
-              isOpen={this.state.alertSuccessVisible}
-              toggle={this.onDismiss}
-            >
-              {this.state.alertSuccessMessage}
-              <Button color="link" href="/userprofile">
-                Proceed to Profile Page
-              </Button>
-            </Alert>
+            {alertVisible ? this.showAlert(this.state.registerValidated) : <></>}
           </CardBody>
           <CardFooter style={{ padding: "0", backgroundColor: "#e6e6e6" }}>
             Already a Member?
@@ -293,7 +282,7 @@ class Register extends Component {
             </Button>
           </CardFooter>
         </Card>
-      </div>
+      </>
     );
   }
 }

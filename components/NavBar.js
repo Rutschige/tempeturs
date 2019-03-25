@@ -83,11 +83,11 @@ export default class NavBar extends React.Component {
       );
     }
   }
-  coloring = { backgroundColor: "#422ef7", color: "	#ffffff" };
+  
   render() {
     return (
       <div>
-        <Navbar style={this.coloring} dark expand="md">
+        <Navbar className="coloring" dark expand="md">
           <NavbarBrand href="/">
             <i style={{ margin: "5%" }} className="fa fa-paw" />
             Tempeturs
